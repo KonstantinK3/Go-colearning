@@ -18,6 +18,7 @@ func main() {
 	}
 
 	fmt.Printf("Current time from server %s is: %s \n", timeServer, nTime)
+
 	fmt.Printf("Local machine time is: %s \n", time.Now())
 
 	os.Exit(0)
