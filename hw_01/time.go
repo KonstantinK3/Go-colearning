@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	timeServer := "0.beevik-ntp.pool.ntp.org1"
+	timeServer := "0.beevik-ntp.pool.ntp.org"
 	nTime, err := ntp.Time(timeServer)
 
 	if err != nil {
