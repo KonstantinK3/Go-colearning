@@ -11,24 +11,31 @@ func Unpack(s string) string {
 	ans := ""
 	length := len(s)
 	repeatFlag := 0
+	screenFlag := 0
 
 	for counter, value := range s {
 
-		// проверим текущий символ
+		// проверим текущий символ. Если это экран - выставим флаг в 1
+		if string(value) == "\\" {
+			screenFlag = 1
+			continue
+		}
+
 		_, err := strconv.ParseInt(string(value), 10, 32)
 
-		switch err == nil {
-		// если текущий символ инт - увеличим флаг повторений и выйдем если он больше 1
+		switch err == nil && screenFlag == 0 {
+		// если текущий символ неэкранированный инт - увеличим флаг повторений и выйдем если он больше 1
 		case true:
 			repeatFlag++
 			if repeatFlag > 1 {
 				return ""
 			}
 
-		// если ткущий символ - буква
+		// если текущий символ - буква
 		case false:
-			// обнулим флаг повторений
+			// обнулим флаг повторений и экранов
 			repeatFlag = 0
+			screenFlag = 0
 
 			// если это последний символ - прибавим его и выйдем
 			if counter >= length-1 {
