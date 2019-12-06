@@ -2,22 +2,32 @@ package unpack
 
 import (
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestUnpack(t *testing.T) {
 
-	input := "a4bc2d5e"
-	output := "aaaabccddddde"
-	assert.Equal(t, Unpack(input), output, "unpacking "+input+" expecting "+output+" got "+Unpack(input))
+	tables := []struct {
+		input  string
+		output string
+	}{
+		{"a4bc2d5e", "aaaabccddddde"},
+		{"abcd", "abcd"},
+		{"345", ""},
+		{"a2b3n", "aabbbn"},
+	}
 
-	input = "abcd"
-	output = "abcd"
-	assert.Equal(t, Unpack(input), output, "unpacking "+input+" expecting "+output+" got "+Unpack(input))
+	for tableNumber, table := range tables {
 
-	input = "45"
-	output = ""
-	assert.Equal(t, Unpack(input), output, "unpacking "+input+" expecting "+output+" got "+Unpack(input))
+		unpacked := Unpack(table.input)
+		if unpacked != table.output {
+			t.Errorf("Case number %d, Input: %s, expected: %s, output: %s", tableNumber+1, table.input, table.output, unpacked)
+		}
 
+	}
 }
+
+// "github.com/stretchr/testify/assert"
+// assert.Equal(t, Unpack(table.input), table.output, "unpacking "+table.input+" expecting "+table.output+" got "+Unpack(table.input))
+// input := "a4bc2d5e"
+// output := "aaaabccddddde"
+// assert.Equal(t, Unpack(input), output, "unpacking "+input+" expecting "+output+" got "+Unpack(input))
