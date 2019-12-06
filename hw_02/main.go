@@ -8,8 +8,6 @@ import (
 
 func main() {
 
-	result := unpack.Unpack("qwerasdfe")
-
-	fmt.Println(result)
+	fmt.Println(unpack.Unpack("a4bc2d5e"))
 
 }
