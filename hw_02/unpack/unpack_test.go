@@ -14,6 +14,9 @@ func TestUnpack(t *testing.T) {
 		{"abcd", "abcd"},
 		{"345", ""},
 		{"a2b3n", "aabbbn"},
+		{"qwe/4/5", "qwe45"},
+		{"qwe/45", "qwe44444"},
+		{"qwe//5", "qwe/////"},
 	}
 
 	for tableNumber, table := range tables {

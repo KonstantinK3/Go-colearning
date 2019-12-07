@@ -15,8 +15,8 @@ func Unpack(s string) string {
 
 	for counter, value := range s {
 
-		// проверим текущий символ. Если это экран - выставим флаг в 1
-		if string(value) == "\\" {
+		// проверим текущий символ. Если это экран - выставим флаг в 1. Если уже был экран - продолжаем
+		if string(value) == "/" && screenFlag != 1 {
 			screenFlag = 1
 			continue
 		}
