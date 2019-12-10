@@ -8,6 +8,6 @@ import (
 
 func main() {
 
-	fmt.Println(unpack.Unpack("qwe//5"))
+	fmt.Println(unpack.Unpack("qw3eы5f"))
 
 }
