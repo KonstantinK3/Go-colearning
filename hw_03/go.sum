@@ -2,6 +2,8 @@ github.com/KonstantinK3/Go-colearning v0.0.0-20191207093014-0bdb261b3d08 h1:47DE
 github.com/KonstantinK3/Go-colearning/hw_02 v0.0.0-20191207093014-0bdb261b3d08 h1:ALXNtm/4946nahVwws4qzP8eAY8rDLLRJhjZHntoe+c=
 github.com/KonstantinK3/Go-colearning/hw_02 v0.0.0-20191207093014-0bdb261b3d08/go.mod h1:1ZEueMfXIIjd1F4TLXVDEWQvOdeGxfp2CE1APCAyl3I=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
+github.com/mitchellh/mapstructure v1.1.2 h1:fmNYVwqnSfB9mZU6OS2O6GsXM+wcskZDuKQzvN1EDeE=
+github.com/mitchellh/mapstructure v1.1.2/go.mod h1:FVVH3fgwuzCH5S8UJGiWEs2h04kUh9fWfEaFds41c1Y=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/testify v1.4.0/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81PSLYec5m4=

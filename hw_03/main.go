@@ -8,6 +8,7 @@ import (
 
 func main() {
 
-	fmt.Println(wordcount.Wordcount("./text.txt"))
+	fmt.Println(wordcount.Wordcount("test.txt"))
+	fmt.Println(wordcount.Wordcount("voina-i-mir.txt"))
 
 }
