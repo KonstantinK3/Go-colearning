@@ -8,28 +8,34 @@ import (
 
 func main() {
 
-	data := []int{41, 72, 19, 99, 36, 65}
+	data := []string{"cmon", "baby", "a", "light", "my", "fire", "z"}
+	res := unimax.GetMax(data)
+	fmt.Printf("maximum value is: %v \n", res)
 
-	result, _ := unimax.FindMax(data, func(i, j int) bool {
-		return data[i] < data[j]
+	data1 := []float64{1, 2.11, 10, 100, 0, -1}
+	res1 := unimax.GetMax(data1)
+	fmt.Printf("maximum value is: %v \n", res1)
+
+	data2 := []int{1, 2, 10, 10000, 0, -1}
+	res2 := unimax.GetMax(data2)
+	fmt.Printf("maximum value is: %v \n", res2)
+
+	data3 := []string{"cmon", "baby", "a", "light", "my", "fire", "z"}
+	res3, _ := unimax.CustomMax(data3, func(i, j int) bool {
+		return data3[i] < data3[j]
 	})
+	fmt.Printf("Max value: %v\n", res3)
 
-	fmt.Printf("Max value: %v\n", result)
-
-	data1 := []string{"cmon", "baby", "a", "light", "my", "fire", "z"}
-
-	result, _ = unimax.FindMax(data1, func(i, j int) bool {
-		return data1[i] < data1[j]
+	data4 := []float64{1, 2.11, 10, 100, 0, -1}
+	res4, _ := unimax.CustomMax(data4, func(i, j int) bool {
+		return data4[i] < data4[j]
 	})
+	fmt.Printf("Max value: %v\n", res4)
 
-	fmt.Printf("Max value: %v\n", result)
-
-	data2 := []float64{41.1, 72.5, 19.66, 105111, 36.0001, 65.2}
-
-	result, _ = unimax.FindMax(data2, func(i, j int) bool {
-		return data2[i] < data2[j]
+	data5 := []int{1, 2, 10, 10000, 0, -1}
+	res5, _ := unimax.CustomMax(data5, func(i, j int) bool {
+		return data5[i] < data5[j]
 	})
-
-	fmt.Printf("Max value: %v\n", result)
+	fmt.Printf("Max value: %v\n", res5)
 
 }
