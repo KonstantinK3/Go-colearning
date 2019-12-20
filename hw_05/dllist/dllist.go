@@ -1,9 +1,8 @@
 package dllist
 
-import (
-	"fmt"
-)
+import "fmt"
 
+// Node is a single node for list
 type Node struct {
 	Value interface{}
 	prev  *Node
@@ -11,12 +10,14 @@ type Node struct {
 	list  *List
 }
 
+// List is a double linked list of Nodes
 type List struct {
 	head   *Node
 	tail   *Node
 	length int
 }
 
+//NewList makes a new list. myList := dllist.NewList()
 func NewList() *List {
 	return &List{}
 }
@@ -33,58 +34,34 @@ func (list *List) Last() *Node {
 	return list.tail
 }
 
-func (lst *List) PushFront(data interface{}) *Node {
+func (list *List) PushFront(value interface{}) {
 	var node *Node
-	if lst.head == nil {
-		node = &Node{data, nil, nil, lst}
-		lst.tail = node
-		lst.length++
+	if list.head == nil {
+		node = &Node{value, nil, nil, list}
+		list.tail = node
+		list.head = node
+		list.length++
 	} else {
-		node = lst.PushBefore(lst.head, data)
+		node = &Node{value, nil, list.head, list}
+		list.head.prev = node
+		list.head = node
+		list.length++
 	}
-	lst.head = node
-
-	return node
 }
 
-func (lst *List) PushBack(data interface{}) *Node {
+func (list *List) PushBack(value interface{}) {
 	var node *Node
-	if lst.tail == nil {
-		node = &Node{data, nil, nil, lst}
-		lst.head = node
-		lst.length++
+	if list.tail == nil {
+		node = &Node{value, nil, nil, list}
+		list.tail = node
+		list.head = node
+		list.length++
 	} else {
-		node = lst.PushAfter(lst.tail, data)
+		node = &Node{value, list.tail, nil, list}
+		list.tail.next = node
+		list.tail = node
+		list.length++
 	}
-	lst.tail = node
-
-	return node
-}
-
-func (lst *List) PushBefore(node *Node, data interface{}) *Node {
-	newNode := &Node{data, node.prev, node, lst}
-	if node.prev != nil {
-		node.prev.next = newNode
-	} else {
-		lst.head = newNode
-	}
-	node.prev = newNode
-	lst.length++
-
-	return newNode
-}
-
-func (lst *List) PushAfter(node *Node, data interface{}) *Node {
-	newNode := &Node{data, node, node.next, lst}
-	if node.next != nil {
-		node.next.prev = newNode
-	} else {
-		lst.tail = newNode
-	}
-	node.next = newNode
-	lst.length++
-
-	return newNode
 }
 
 func (lst *List) Remove(node *Node) {
@@ -107,14 +84,14 @@ func (lst *List) Remove(node *Node) {
 	lst.length--
 }
 
-func (lst *List) String() string {
-	result := fmt.Sprintf("[H] -> ")
-	cursor := lst.head
+func (list *List) String() string {
+	result := fmt.Sprintf("[Head] -> ")
+	cursor := list.head
 	for cursor != nil {
 		result += fmt.Sprintf("[%v] -> ", cursor.Value)
 		cursor = cursor.next
 	}
-	result += fmt.Sprintf("[T]")
+	result += fmt.Sprintf("[Tail]")
 
 	return result
 }
@@ -125,4 +102,8 @@ func (node *Node) Prev() *Node {
 
 func (node *Node) Next() *Node {
 	return node.next
+}
+
+func (node *Node) ValueOf() interface{} {
+	return node.Value
 }
