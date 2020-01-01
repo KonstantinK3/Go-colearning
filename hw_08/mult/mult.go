@@ -2,76 +2,41 @@ package mult
 
 import (
 	"fmt"
-	"sync"
 )
 
 // Mult
 func Mult(fns []func() error, nTasks int, nErrors int) {
 
 	jobs := make(chan func() error, nTasks)
-	done := make(chan struct{})
-	errorCounter := &ErrorCounter{}
+	counter := 0
 
 	for i := 0; i < nTasks; i++ {
-		go func(counter *ErrorCounter, idx int) {
-			fmt.Printf("job %v started \n", idx)
+		go func(id int) {
+			fmt.Printf("job number %v started \n", id)
+			///////
 			for {
-				select {
-				case fn := <-jobs:
-					fmt.Printf("%v Start processing of new job\n", idx)
-					if err := fn(); err != nil {
-						counter.Increase()
-						fmt.Printf("%v Failed to process job\n", idx)
-					} else {
-						fmt.Printf("%v Successfull done\n", idx)
-					}
-				case <-done:
-					fmt.Printf("%v Got exit signal\n", idx)
-					return
+				currentFunc := <-jobs
+				fmt.Printf("Starting new job in goruntine number %v \n", id)
+				err := currentFunc()
+				if err != nil {
+					counter++
+					fmt.Printf("Job number %v ruturned an error '%s'\n", id, err)
+				} else {
+					fmt.Printf("Job number %v done succesfully\n", id)
 				}
+
 			}
-		}(errorCounter, i)
+		}(i)
 	}
 
-	for _, job := range fns {
-		if errorCounter.Value() >= nErrors {
-			fmt.Printf("----------Maximum errors limit reached: %v----------\n", errorCounter.Value())
-			done <- struct{}{}
-			break
+	for c, job := range fns {
+		if counter >= nErrors {
+			fmt.Printf("----------Maximum errors limit reached: %v----------\n", counter)
+			return
 		}
 
-		fmt.Println("<-- Sent job to worker")
+		fmt.Printf("=======Sending job %v to worker=======\n", c)
 		jobs <- job
 	}
-
-	fmt.Println("Done!")
-
-}
-
-func Mult_old(fns []func() error, nTasks int, nErrors int) {
-
-	currentErrors := 0
-	var wg sync.WaitGroup
-
-	var ch = make(chan int)
-
-	for _, v := range fns {
-		wg.Add(1)
-		go func(wg *sync.WaitGroup) {
-			err := v()
-			if err != nil {
-				currentErrors++
-			}
-			if currentErrors >= nErrors {
-				ch <- 1
-			}
-
-			wg.Done()
-		}(&wg)
-	}
-
-	<-ch
-
-	wg.Wait()
 
 }
