@@ -27,6 +27,8 @@ func Wordcount(file string) []string {
 	// Сплит нового массива по всему возможному говну. Для Windows возврат строки - /r/n !!!!
 	wordArray := regexp.MustCompile("[ ,./;:\n\r`~!@#$%^&*()-=_+—]+").Split(strings.ToLower(string(text)), -1)
 
+	//fmt.Printf("%v", wordArray)
+
 	// Уберем пролетающие ХЗ как пустые слова
 	wordArrayClear := []string{}
 	for _, value := range wordArray {
@@ -64,8 +66,8 @@ func Wordcount(file string) []string {
 	}
 
 	limit := len(ans)
-	if len(ans) > 5 {
-		limit = 5
+	if len(ans) > 100 {
+		limit = 100
 	}
 
 	return ans[:limit]
