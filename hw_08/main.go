@@ -15,7 +15,7 @@ func main() {
 
 	for i := 0; i < 100; i++ {
 		fToAdd := func() error {
-			errorOrNot := rand.Intn(15)     // rerurns error if 0, [o,n)
+			errorOrNot := rand.Intn(3)      // rerurns error if 0, [o,n)
 			timeToSleep := rand.Int31n(500) // time to sleep, [o,n)
 			fmt.Printf("i will sleep %v millisecs and I will return error: %v\n", timeToSleep, errorOrNot == 0)
 			time.Sleep(time.Duration(timeToSleep) * time.Millisecond)
