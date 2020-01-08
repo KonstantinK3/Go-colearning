@@ -8,7 +8,7 @@
 
 ### Пример использования:
 
->fc.exe -from text.txt -to text1.txt offset 1024 limit 2048
+>fc.exe -from text.txt -to text1.txt -offset 1024 -limit 2048
 
 Выводить в консоль прогресс копирования в %, например с помощью github.com/cheggaaa/pb Программа может НЕ обрабатывать файлы, у которых не известна длинна (например /dev/urandom). 
 

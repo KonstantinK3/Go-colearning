@@ -2,8 +2,7 @@ package main
 
 import (
 	"flag"
-	"fmt"
-	"os"
+	"log"
 
 	"github.com/KonstantinK3/Go-colearning/hw_10/copy"
 )
@@ -23,10 +22,10 @@ func init() {
 func main() {
 
 	flag.Parse()
+	err := copy.Copy(from, to, offset, limit)
 
-	fmt.Printf("%T, %#v \n", os.Args, os.Args)
-	fmt.Println(from, to, offset, limit)
-
-	copy.Copy(from, to, offset, limit)
+	if err != nil {
+		log.Fatalf("Oh my, something bad happened: '%s' \n", err)
+	}
 
 }
