@@ -4,7 +4,7 @@ import (
 	"flag"
 	"log"
 
-	"github.com/KonstantinK3/Go-colearning/hw_10/copy"
+	"github.com/KonstantinK3/Go-colearning/hw_10/filecopy"
 )
 
 var from string
